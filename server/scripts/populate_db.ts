@@ -69,11 +69,13 @@ async function tagCreate(name: string): Promise<ITagDB> {
  * @returns a promise that resolves to the answer object created in the database
  */
 function answerCreate(
+  qid: mongoose.Types.ObjectId,
   text: string,
   ans_by: string,
   ans_date_time: Date
 ): Promise<IAnswerDB> {
   const answerDetail: IAnswerDB = {
+    qid,
     text,
     ans_by,
     ans_date_time,
@@ -122,104 +124,5 @@ function questionCreate(
   return qstn.save();
 }
 
-/**
- * an asynchronous function to populate the database with tags, answers, and questions
- */
-const populate = async () => {
-  try {
-    const t1 = await tagCreate("react");
-    const t2 = await tagCreate("javascript");
-    const t3 = await tagCreate("android-studio");
-    const t4 = await tagCreate("shared-preferences");
-    const t5 = await tagCreate("storage");
-    const t6 = await tagCreate("website");
-
-    const a1 = await answerCreate(
-      A1_TXT,
-      "hamkalo",
-      new Date("2023-11-20T03:24:42")
-    );
-    const a2 = await answerCreate(
-      A2_TXT,
-      "azad",
-      new Date("2023-11-23T08:24:00")
-    );
-    const a3 = await answerCreate(
-      A3_TXT,
-      "abaya",
-      new Date("2023-11-18T09:24:00")
-    );
-    const a4 = await answerCreate(
-      A4_TXT,
-      "alia",
-      new Date("2023-11-12T03:30:00")
-    );
-    const a5 = await answerCreate(
-      A5_TXT,
-      "sana",
-      new Date("2023-11-01T15:24:19")
-    );
-    const a6 = await answerCreate(
-      A6_TXT,
-      "abhi3241",
-      new Date("2023-02-19T18:20:59")
-    );
-    const a7 = await answerCreate(
-      A7_TXT,
-      "mackson3332",
-      new Date("2023-02-22T17:19:00")
-    );
-    const a8 = await answerCreate(
-      A8_TXT,
-      "ihba001",
-      new Date("2023-03-22T21:17:53")
-    );
-
-    await questionCreate(
-      Q1_DESC,
-      Q1_TXT,
-      [t1, t2],
-      [a1, a2],
-      "Joji John",
-      new Date("2022-01-20T03:00:00"),
-      10
-    );
-    await questionCreate(
-      Q2_DESC,
-      Q2_TXT,
-      [t3, t4, t2],
-      [a3, a4, a5],
-      "saltyPeter",
-      new Date("2023-01-10T11:24:30"),
-      121
-    );
-    await questionCreate(
-      Q3_DESC,
-      Q3_TXT,
-      [t5, t6],
-      [a6, a7],
-      "monkeyABC",
-      new Date("2023-02-18T01:02:15"),
-      200
-    );
-    await questionCreate(
-      Q4_DESC,
-      Q4_TXT,
-      [t3, t4, t5],
-      [a8],
-      "elephantCDE",
-      new Date("2023-03-10T14:28:01"),
-      103
-    );
-
-    console.log("done");
-  } catch (err) {
-    console.error("ERROR:", err);
-  } finally {
-    db.close();
-  }
-};
-
-populate();
 
 console.log("processing ...");
