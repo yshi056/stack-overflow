@@ -17,12 +17,13 @@ import answer  from "./routers/answers";
 import user from "./routers/user";
 import authRouter from './routers/auth';
 
-const MONGO_URL: string = "mongodb://127.0.0.1:27017/fake_so";
-const CLIENT_URL: string = "http://localhost:3000";
-const port: number = 8000;
+dotenv.config(); // Move this to the top, before using env variables
+
+const MONGO_URL: string = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/fake_so";
+const CLIENT_URL: string = process.env.CLIENT_URL || "http://localhost:3000";
+const port: number = parseInt(process.env.PORT || "8000");
 
 mongoose.connect(MONGO_URL);
-dotenv.config();
 
 const app: Express = express();
 
