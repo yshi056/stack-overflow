@@ -11,7 +11,7 @@ import axios, {
 } from "axios";
 
 // Base URL for the REST API of the server.
-const REACT_APP_API_URL = "http://localhost:8000";
+const REACT_APP_API_URL = "https://stack-overflow-1-31yc.onrender.com";
 
 /**
  * The handler function handles the response from the server by simply returning the response.
