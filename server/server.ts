@@ -113,4 +113,17 @@ app.use("/answer", answer);
 app.use("/user", user);
 app.use('/auth', authRouter);
 
+// Add this after all your API routes (after the auth router)
+// This will serve static files from the build directory in production
+if (process.env.NODE_ENV === 'production') {
+  // Serve static files from the React app
+  const buildPath = path.join(__dirname, 'public');
+  app.use(express.static(buildPath));
+  
+  // Handle React routing, return all requests to React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'));
+  });
+}
+
 module.exports = server;
