@@ -26,9 +26,8 @@ const port = process.env.PORT || 8000;
 app.use(express.json());
 app.use(cookieParser());
 
-// For unified deployment, use the same origin approach
 app.use(cors({
-  origin: true, // This allows requests from the same origin
+  origin: process.env.NODE_ENV === 'production' ? true : 'http://localhost:3000',
   credentials: true
 }));
 
