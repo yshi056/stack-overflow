@@ -24,7 +24,7 @@ export const useComment = ({ entityId, entityType }: UseCommentProps) => {
     
     try {
       // Make a real API call to fetch comments
-      const response = await fetch(`https://stack-overflow-1-31yc.onrender.com/${entityType === 'answer' ? 'answer' : 'question'}/${entityId}/comment`, {
+      const response = await fetch(`/${entityType === 'answer' ? 'answer' : 'question'}/${entityId}/comment`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -144,7 +144,7 @@ export const useComment = ({ entityId, entityType }: UseCommentProps) => {
     
     try {
       console.log(`Posting comment to ${entityType}/${entityId}/comment:`, commentText);
-      const response = await fetch(`https://stack-overflow-1-31yc.onrender.com/${entityType === 'answer' ? 'answer' : 'question'}/${entityId}/comment`, {
+      const response = await fetch(`/${entityType === 'answer' ? 'answer' : 'question'}/${entityId}/comment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
