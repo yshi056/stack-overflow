@@ -65,7 +65,7 @@ export const useSignup = (onSignupSuccess: VoidFunctionType) => {
 
     if (isValid) {
       try {
-        const response = await fetch("https://stack-overflow-1-31yc.onrender.com/user/signup", {
+        const response = await fetch("/user/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
