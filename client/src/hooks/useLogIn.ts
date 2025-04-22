@@ -38,7 +38,7 @@ export const useLogin = (onLoginSuccess: VoidFunctionType) => {
 
     if (isValid) {
       try {
-        const response = await fetch("https://stack-overflow-1-31yc.onrender.com/user/login", {
+        const response = await fetch("/user/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
