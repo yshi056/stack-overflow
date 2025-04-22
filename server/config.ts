@@ -1,8 +1,13 @@
-// Add configuration setting for your server to this file
-// Config for local testing, that is, without docker.
-const MONGO_URL = "mongodb://127.0.0.1:27017/fake_so";
-const CLIENT_URL = "http://localhost:3000";
-const port = 8000;
+// Config with environment variable fallbacks for deployment
+const MONGO_URL = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/fake_so";
+
+// For unified deployment, this should be set conditionally
+const CLIENT_URL = process.env.NODE_ENV === 'production' 
+  ? true  // Use same-origin in production (unified deployment)
+  : "http://localhost:3000";  // Use localhost in development
+
+// Use environment variable for port with fallback
+const port = process.env.PORT || 8000;
 
 export {
     MONGO_URL,
