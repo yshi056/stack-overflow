@@ -28,12 +28,10 @@ mongoose.connect(MONGO_URL);
 const app: Express = express();
 
 // The middleware function to allow cross-origin requests from the client URL.
-app.use(
-  cors({
-    credentials: true,
-    origin: [CLIENT_URL],
-  })
-);
+app.use(cors({
+  origin: CLIENT_URL, 
+  credentials: true
+}));
 
 // The middleware function to parse the request body.
 app.use(express.json());
