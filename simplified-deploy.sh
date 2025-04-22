@@ -25,8 +25,10 @@ const port = process.env.PORT || 8000;
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+
+// For unified deployment, use the same origin approach
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: true, // This allows requests from the same origin
   credentials: true
 }));
 
