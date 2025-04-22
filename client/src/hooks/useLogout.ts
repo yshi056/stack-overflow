@@ -21,7 +21,7 @@ export const useLogout = (onLogoutSuccess?: VoidFunctionType) => {
       console.log("Attempting to logout...");
       
       // Using the correct path to access the logout endpoint in the user router
-      const response = await fetch('https://stack-overflow-1-31yc.onrender.com', {
+      const response = await fetch('/user/logout', {
         method: 'POST',
         credentials: 'include', // Important to include cookies
         headers: {
